@@ -19,7 +19,7 @@ export const Heropage = () => {
   }, [allCoins]);
 
   return (
-    <div className="min-h-screen w-screen flex flex-col items-center justify-center text-white md:px-4 pt-20">
+    <div className=" bg-gray-950 min-h-screen w-screen flex flex-col items-center justify-center text-white md:px-4 pt-20">
       <h1 className="text-4xl font-bold md:text-7xl max-w-4xl text-center">
         Largest <span className="text-emerald-500">Crypto</span> Marketplace
       </h1>
@@ -90,13 +90,18 @@ export const Heropage = () => {
 
   {/* Body */}
   <div className="w-full max-w-5xl bg-gray-950 rounded-b-xl overflow-hidden">
-   {
-  loading? Array.from({ length: 10 }).map((_, index) => (
+    {loading ? (
+      Array.from({ length: 10 }).map((_, index) => (
         <ToptenSkeleton key={index} />
-      )): coinData.slice(0, 10).map((item) => (
-        <Topten key={item.id} item={item} />
       ))
-    }
+    ) : error ? (
+      <div className="flex flex-col items-center justify-center py-12 px-4 text-center text-red-400">
+        <p className="text-lg font-semibold">Network issue detected</p>
+        <p className="text-sm text-gray-400 mt-2">Please check your connection and try again.</p>
+      </div>
+    ) : (
+      coinData.slice(0, 10).map((item) => <Topten key={item.id} item={item} />)
+    )}
   </div>
 </div>
       </div>

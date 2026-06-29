@@ -10,7 +10,7 @@ export const CoinDetails = () => {
   const { id } = useParams();
   const { allCoins,loading ,currency} = useCryptoContext();
   const coin = allCoins.find((coin) => coin.id === id);
-  console.log(coin);
+  // console.log(coin);
 
 if (loading) {
   return (

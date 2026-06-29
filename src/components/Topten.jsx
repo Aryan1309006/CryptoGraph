@@ -4,10 +4,15 @@ import { useCryptoContext } from "../context/Cryptocontext";
 
 
 export const Topten = ({ item }) => {
-  const {currency}=useCryptoContext()
+  const { currency } = useCryptoContext();
   const navigate = useNavigate();
+
+  const price = typeof item?.current_price === "number" ? item.current_price : 0;
+  const priceChange = typeof item?.price_change_percentage_24h === "number" ? item.price_change_percentage_24h : 0;
+  const marketCap = typeof item?.market_cap === "number" ? item.market_cap : 0;
+
   return (
-    <div className="border-b border-gray-800 last:border-none hover:bg-gray-900 transition duration-200"  onClick={() => navigate(`/coin/${item.id}`)}>
+    <div className="border-b border-gray-800 last:border-none hover:bg-gray-900 transition duration-200" onClick={() => navigate(`/coin/${item.id}`)}>
       <div className="flex items-center h-16 md:h-20 px-4 md:px-6 text-white">
 
         {/* Rank */}
@@ -36,23 +41,21 @@ export const Topten = ({ item }) => {
 
         {/* Price */}
         <div className="w-[20%] md:w-[18%] text-right text-sm md:text-base font-medium">
-         {currency.symbol}{item.current_price.toLocaleString()}
+          {currency.symbol}{price.toLocaleString()}
         </div>
 
         {/* 24h Change */}
         <div
           className={`w-[25%] md:w-[20%] text-right text-sm md:text-base font-semibold ${
-            item.price_change_percentage_24h >= 0
-              ? "text-green-500"
-              : "text-red-500"
+            priceChange >= 0 ? "text-green-500" : "text-red-500"
           }`}
         >
-          {item.price_change_percentage_24h.toFixed(2)}%
+          {priceChange.toFixed(2)}%
         </div>
 
         {/* Market Cap - Hidden on Mobile */}
         <div className="hidden md:block md:w-[20%] text-right text-base">
-          {currency.symbol}{(item.market_cap / 1e9).toFixed(2)}B
+          {currency.symbol}{(marketCap / 1e9).toFixed(2)}B
         </div>
 
       </div>

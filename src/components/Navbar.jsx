@@ -5,7 +5,7 @@ import { useCryptoContext } from "../context/Cryptocontext";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Features", href: "#" },
+  { label: "Features", href: "/Features" },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "#" },
 ];

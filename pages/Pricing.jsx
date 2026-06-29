@@ -4,7 +4,7 @@ import { Topten } from "../src/components/Topten";
 import ToptenSkeleton from "../src/components/ToptenSkeleton";
 
 export const Pricing = () => {
-   useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const { coinData, allCoins, loading, error } = useCryptoContext();
@@ -140,8 +140,11 @@ export const Pricing = () => {
             ) : error ? (
               <div className="text-red-500 text-center py-10">{error}</div>
             ) : filteredCoins.length === 0 ? (
-              <div className="text-gray-400 text-center py-10">
-                No coins found.
+              <div className="flex flex-col items-center justify-center py-12 px-4 text-center text-red-400">
+                <p className="text-lg font-semibold">Network issue detected</p>
+                <p className="text-sm text-gray-400 mt-2">
+                  Please check your connection and try again.
+                </p>
               </div>
             ) : (
               filteredCoins.map((coin) => <Topten key={coin.id} item={coin} />)
