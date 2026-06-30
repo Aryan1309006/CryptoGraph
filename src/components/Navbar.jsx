@@ -38,7 +38,7 @@ export default function Navbar() {
           className="flex items-center gap-3 rounded-2xl bg-slate-900/70 px-3 py-2 transition hover:bg-slate-900"
         >
           <div>
-            <div className="flex items-center gap-2 text-2xl font-bold text-white">
+            <div className="flex items-center gap-2 text-xl md:text-2xl font-bold text-white">
               <FaBitcoin className="text-emerald-400" />
               <span>
                 Crypto<span className="text-emerald-400">Graph</span>
@@ -102,7 +102,31 @@ export default function Navbar() {
             Login
           </a>
         </div>
+ <select className="border-none"
+  value={currency.name}
+  onChange={(e) => {
+    switch (e.target.value) {
+      case "usd":
+        setCurrency({ name: "usd", symbol: "$" });
+        break;
 
+      case "inr":
+        setCurrency({ name: "inr", symbol: "₹" });
+        break;
+
+      case "eur":
+        setCurrency({ name: "eur", symbol: "€" });
+        break;
+
+      default:
+        break;
+    }
+  }}
+>
+  <option value="usd" className="bg-slate-900 text-white border-none" >USD</option>
+  <option value="inr" className="bg-slate-900 text-white border-none" >INR</option>
+  <option value="eur" className="bg-slate-900 text-white border-none" >EUR</option>
+</select>
         <button
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
@@ -114,7 +138,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {mobileOpen && (
+      {mobileOpen && ( 
         <div className="md:hidden border-t border-slate-800 bg-slate-950/95 px-5 py-5">
           <div className="space-y-3">
             {navItems.map((item) => (
