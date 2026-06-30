@@ -7,11 +7,16 @@ const CryptoContextProvider = ({ children }) => {
   const [allCoins, setAllCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(10);
 
   const [currency, setCurrency] = useState({
     name: "usd",
     symbol: "$",
   });
+
+  const loadMoreCoins = () => {
+    setVisibleCount((prev) => Math.min(prev + 10, allCoins.length || prev));
+  };
 
   // Fetch coins
   const fetchCoins = async () => {
@@ -20,7 +25,7 @@ const CryptoContextProvider = ({ children }) => {
 
     try {
       const res = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=50&page=1`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=100&page=1`
       );
 
       if (!res.ok) {
@@ -30,7 +35,7 @@ const CryptoContextProvider = ({ children }) => {
       const data = await res.json();
 
       setAllCoins(data);
-      setCoinData(data.slice(0, 10));
+      setVisibleCount(10);
     } catch (err) {
       console.error(err);
       setError(err.message || "Failed to fetch coins");
@@ -38,6 +43,10 @@ const CryptoContextProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    setCoinData(allCoins.slice(0, visibleCount));
+  }, [allCoins, visibleCount]);
 
   // Refetch whenever currency changes
   useEffect(() => {
@@ -53,6 +62,9 @@ const CryptoContextProvider = ({ children }) => {
         error,
         currency,
         setCurrency,
+        visibleCount,
+        loadMoreCoins,
+        hasMoreCoins: allCoins.length > visibleCount,
       }}
     >
       {children}

@@ -7,12 +7,28 @@ export const Pricing = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const { coinData, allCoins, loading, error } = useCryptoContext();
+  const { coinData, allCoins, loading, error, visibleCount, loadMoreCoins, hasMoreCoins } = useCryptoContext();
   console.log(allCoins);
 
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("rank");
   const [changeFilter, setChangeFilter] = useState("all");
+
+  useEffect(() => {
+    if (loading || error) return;
+
+    const handleScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 200;
+
+      if (nearBottom && hasMoreCoins) {
+        loadMoreCoins();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, error, hasMoreCoins, loadMoreCoins]);
 
   const filteredCoins = useMemo(() => {
     if (!allCoins) return [];
@@ -147,7 +163,7 @@ export const Pricing = () => {
                 </p>
               </div>
             ) : (
-              filteredCoins.map((coin) => <Topten key={coin.id} item={coin} />)
+              filteredCoins.slice(0, visibleCount).map((coin) => <Topten key={coin.id} item={coin} />)
             )}
           </div>
         </div>
