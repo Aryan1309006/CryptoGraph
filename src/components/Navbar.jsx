@@ -32,13 +32,13 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-slate-950/95 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl border-b border-emerald-500/20">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 text-slate-100">
+      <div className="mx-auto flex max-w-4xl md:max-w-7xl items-center justify-between gap-4 px-3 md:px-5 py-4 text-slate-100">
         <a
-          href="#"
+          href="/"
           className="flex items-center gap-3 rounded-2xl bg-slate-900/70 px-3 py-2 transition hover:bg-slate-900"
         >
           <div>
-            <div className="flex items-center gap-2 text-xl md:text-2xl font-bold text-white">
+            <div className="flex items-center gap-2 text-l md:text-2xl font-bold text-white">
               <FaBitcoin className="text-emerald-400" />
               <span>
                 Crypto<span className="text-emerald-400">Graph</span>
@@ -61,31 +61,39 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <select className="border-none"
-  value={currency.name}
-  onChange={(e) => {
-    switch (e.target.value) {
-      case "usd":
-        setCurrency({ name: "usd", symbol: "$" });
-        break;
+          <select
+            value={currency.name}
+            onChange={(e) => {
+              switch (e.target.value) {
+                case "usd":
+                  setCurrency({ name: "usd", symbol: "$" });
+                  break;
 
-      case "inr":
-        setCurrency({ name: "inr", symbol: "₹" });
-        break;
+                case "inr":
+                  setCurrency({ name: "inr", symbol: "₹" });
+                  break;
 
-      case "eur":
-        setCurrency({ name: "eur", symbol: "€" });
-        break;
+                case "eur":
+                  setCurrency({ name: "eur", symbol: "€" });
+                  break;
 
-      default:
-        break;
-    }
-  }}
->
-  <option value="usd" className="bg-slate-900 text-white border-none" >USD</option>
-  <option value="inr" className="bg-slate-900 text-white border-none" >INR</option>
-  <option value="eur" className="bg-slate-900 text-white border-none" >EUR</option>
-</select>
+                default:
+                  break;
+              }
+            }}
+            className="rounded-xl border border-slate-700 bg-slate-900 px-2 py-2 text-sm text-slate-100 outline-none"
+          >
+            <option value="usd" className="bg-slate-900 text-white">
+              USD
+            </option>
+            <option value="inr" className="bg-slate-900 text-white">
+              INR
+            </option>
+            <option value="eur" className="bg-slate-900 text-white">
+              EUR
+            </option>
+          </select>
+
           <button
             type="button"
             onClick={() => setDarkMode((prev) => !prev)}
@@ -102,40 +110,51 @@ export default function Navbar() {
             Login
           </a>
         </div>
- <select className="border-none"
-  value={currency.name}
-  onChange={(e) => {
-    switch (e.target.value) {
-      case "usd":
-        setCurrency({ name: "usd", symbol: "$" });
-        break;
 
-      case "inr":
-        setCurrency({ name: "inr", symbol: "₹" });
-        break;
+        <div className="flex items-center gap-2 md:hidden">
+          <select
+            value={currency.name}
+            onChange={(e) => {
+              switch (e.target.value) {
+                case "usd":
+                  setCurrency({ name: "usd", symbol: "$" });
+                  break;
 
-      case "eur":
-        setCurrency({ name: "eur", symbol: "€" });
-        break;
+                case "inr":
+                  setCurrency({ name: "inr", symbol: "₹" });
+                  break;
 
-      default:
-        break;
-    }
-  }}
->
-  <option value="usd" className="bg-slate-900 text-white border-none" >USD</option>
-  <option value="inr" className="bg-slate-900 text-white border-none" >INR</option>
-  <option value="eur" className="bg-slate-900 text-white border-none" >EUR</option>
-</select>
-        <button
-          type="button"
-          onClick={() => setMobileOpen((prev) => !prev)}
-          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-          aria-expanded={mobileOpen}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 text-slate-100 md:hidden"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+                case "eur":
+                  setCurrency({ name: "eur", symbol: "€" });
+                  break;
+
+                default:
+                  break;
+              }
+            }}
+            className="rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none"
+          >
+            <option value="usd" className="bg-slate-900 text-white">
+              USD
+            </option>
+            <option value="inr" className="bg-slate-900 text-white">
+              INR
+            </option>
+            <option value="eur" className="bg-slate-900 text-white">
+              EUR
+            </option>
+          </select>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={mobileOpen}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 text-slate-100"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && ( 

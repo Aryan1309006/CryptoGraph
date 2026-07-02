@@ -165,6 +165,15 @@ export const Pricing = () => {
             ) : (
               filteredCoins.slice(0, visibleCount).map((coin) => <Topten key={coin.id} item={coin} />)
             )}
+
+            {loading && filteredCoins.length > 0 && (
+              <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
+                <div className="flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/95 px-4 py-2 text-sm text-zinc-300 shadow-lg">
+                  <div className="h-3 w-3 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
+                  Loading more coins...
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

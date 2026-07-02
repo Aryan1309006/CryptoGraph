@@ -19,13 +19,13 @@ export const Heropage = () => {
   }, [allCoins]);
 
   return (
-    <div className=" bg-gray-950 min-h-screen w-screen flex flex-col items-center justify-center text-white md:px-4 pt-20">
+    <div className="bg-gray-950 min-h-screen w-full flex flex-col items-center justify-center text-white px-4 pt-20">
       <h1 className="text-4xl font-bold md:text-7xl max-w-4xl text-center">
-        Largest <span className="text-emerald-500">Crypto</span> Marketplace
+        Explore the Future of <span className="text-emerald-500">Crypto</span>
       </h1>
-      <p className="text-lg max-w-2xl md:text-xl text-center py-4">
-        Welcome to the world's largest cryptocurrency marketplace. Sign up to
-        explore more about cryptos.
+      <p className="text-lg max-w-2xl md:text-xl text-center py-5">
+         Track live cryptocurrency prices, market trends, and real-time insights 
+          all in one fast, modern platform built for investors and enthusiasts.
       </p>
 
       <div className="w-full max-w-2xl mx-auto px-4">
@@ -65,23 +65,23 @@ export const Heropage = () => {
   <div className="w-full max-w-5xl bg-emerald-600 rounded-t-xl">
     <div className="flex items-center h-14 px-4 md:px-6 text-white font-semibold">
 
-      <div className="w-[10%] md:w-[8%]">
+      <div className="w-[8%] md:w-[8%]">
         #
       </div>
 
-      <div className="w-[45%] md:w-[34%]">
+      <div className="w-[32%] md:w-[34%]">
         Coin
       </div>
 
-      <div className="w-[20%] md:w-[18%] text-right">
+      <div className="w-[18%] md:w-[18%] text-right">
         Price
       </div>
 
-      <div className="w-[25%] md:w-[20%] text-right text-wrap">
+      <div className="w-[18%] md:w-[20%] text-right text-wrap">
         24h Change
       </div>
 
-      <div className="hidden md:block md:w-[20%] text-right">
+      <div className="hidden md:block md:w-[24%] text-right">
         Market Cap
       </div>
 
